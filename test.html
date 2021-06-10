@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+<script>
+    //Minh đưa bạn gái đi chơi
+    //Minh có 500k
+    //Minh đưa bạn gái đi ăn KFC hết 200k  (mất 20p == 2s)
+    //sau khi ăn KFC xong,Minh đưa bạn gái đi xem phim hết 200k (1 tiếng == 3s)
+    //sau đó lại đi ăn bún mọc hết 50k (20p==2s)
+    //Sau đó đi về
+    //Hỏi số tiền còn lại của Minh sau khi đi chơi là bn
+    /*let amout = 500;
+    setTimeout(function(){
+       console.log('Ăn KFC');
+       amout-=200;
+       setTimeout(function(){
+          console.log('Xem phim');
+          amout-=200;
+          setTimeout(function(){
+            console.log('Ăn bún');
+            amout-=50;
+            console.log("Số tiền còn lại là "+amout);
+          },2000);
+       },3000);
+    },2000);
+    */
+
+    /*let amount =500;
+    new Promise((res,rej)=>{
+        setTimeout(()=>{
+            console.log('Ăn KFC');
+            amount-=200;
+            res(amount);
+        },2000)
+    }).then((amount)=>{
+        return new Promise((res,rej)=>{
+          setTimeout(()=>{
+            console.log('Xem phim');
+            amount-=200;
+            res(amount);
+          },3000)
+        })
+    }).then((amount)=>{
+        return new Promise((res,rej)=> {
+            setTimeout(() => {
+                console.log('Ăn bún');
+                amount -= 50;
+                res(amount);
+            }, 2000)
+        })
+    }).then((amount)=>{
+        console.log("Số tiền còn lại là "+amount);
+    })*/
+
+    let amount = 500;
+    (async function() {
+
+        function useMoney(purpose, amountLoss, delay) {
+            return new Promise((res, rej) => {
+                setTimeout(() => {
+                    console.log(purpose);
+                    amount -= amountLoss;
+                    res(amount);
+                }, delay)
+            })
+        }
+
+        await useMoney("Ăn KFC", 200, 2000);
+        await useMoney("Đi xem phim", 200, 3000);
+        await useMoney("Đi ăn bún", 50, 2000);
+        console.log("Số tiền còn lại là " + amount);
+    })(); //self invoke function
+
+    // calc();
+</script>
+
+</html>
