@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="parent">
+        <div class="child"></div>
+    </div>
+    <script>
+        /*BTVN*/
+        /*Viết chương trình tạo hiệu ứng di chuyển hộp*/
+
+        const child = document.querySelector('.child');
+
+        function moving(type) {
+            switch (type) {
+                case 'TOP_RIGHT':
+                    child.style.top = 0;
+                    child.style.right = 0;
+                    child.style.left = 'auto';
+                    break;
+
+                case 'BOTTOM_RIGHT':
+                    child.style.top = 'auto';
+                    child.style.right = 0;
+                    child.style.left = 'auto';
+                    child.style.bottom = 0;
+                    break;
+
+                case 'BOTTOM_LEFT':
+                    child.style.top = 'auto';
+                    child.style.right = 'auto';
+                    child.style.left = 0;
+                    child.style.bottom = 0;
+                    break;
+
+                case 'TOP_LEFT':
+                    child.style.top = 0;
+                    child.style.right = 'auto';
+                    child.style.left = 0;
+                    child.style.bottom = 'auto';
+                    break;
+            }
+        }
+
+        (async function() {
+            await new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    moving('TOP_RIGHT');
+                    resolve();
+                }, 2000)
+            })
+
+            await new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    moving('BOTTOM_RIGHT');
+                    resolve();
+                }, 2000)
+            })
+
+
+            await new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    moving('BOTTOM_LEFT');
+                    resolve();
+                }, 2000)
+            })
+
+            await new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    moving('TOP_LEFT');
+                    resolve();
+                }, 2000)
+            })
+        })();
+    </script>
+
+    <style>
+        .parent {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            border: 1px solid red;
+        }
+        
+        .child {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100px;
+            height: 100px;
+            background: red
+        }
+    </style>
+</body>
+
+
+
+</html>

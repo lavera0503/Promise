@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="parent">
+        <div class="child"></div>
+    </div>
+    <script>
+        /*BTVN*/
+        /*Viết chương trình tạo hiệu ứng di chuyển hộp*/
+        (async function() {
+            await new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    var move = 0;
+                    const child = document.querySelector('.child');
+                    var t = setInterval(TOP_RIGHT, 0.5);
+
+                    function TOP_RIGHT() {
+                        if (move >= 400) {
+                            clearInterval(t);
+                        } else {
+                            move += 1;
+                            child.style.left = move + 'px';
+                        }
+                    }
+                    resolve();
+                }, 2000)
+            })
+            await new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    var move = 0;
+                    const child = document.querySelector('.child');
+                    var t = setInterval(BOTTOM_RIGHT, 0.5);
+
+                    function BOTTOM_RIGHT() {
+                        if (move >= 400) {
+                            clearInterval(t);
+                        } else {
+                            move += 1;
+                            child.style.top = move + 'px';
+                        }
+                    }
+                    resolve();
+                }, 2000)
+            })
+            await new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    var move = 0;
+                    var giam = 0;
+                    const child = document.querySelector('.child');
+                    var t = setInterval(BOTTOM_LEFT, 0.5);
+
+                    function BOTTOM_LEFT() {
+                        if (move >= 400) {
+                            clearInterval(t);
+                        } else {
+                            move += 1;
+                            giam = 400 - move;
+                            child.style.left = giam + 'px';
+                        }
+                    }
+                    resolve();
+                }, 2000)
+            })
+            await new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    var move = 0;
+                    var giam = 0;
+                    const child = document.querySelector('.child');
+                    var t = setInterval(TOP_RIGHT, 1);
+
+                    function TOP_RIGHT() {
+                        if (move >= 400) {
+                            clearInterval(t);
+                        } else {
+                            move += 1;
+                            giam = 400 - move;
+                            child.style.top = giam + 'px';
+                        }
+                    }
+                }, 2000)
+            })
+        })();
+    </script>
+
+    <style>
+        .parent {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            border: 1px solid red;
+        }
+        
+        .child {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100px;
+            height: 100px;
+            background: red
+        }
+    </style>
+</body>
+
+
+
+</html>
